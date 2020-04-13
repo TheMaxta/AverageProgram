@@ -6,6 +6,7 @@
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class StudentDriver
 {
@@ -31,34 +32,37 @@ public class StudentDriver
         int count;
         System.out.println("Please input # of scores: ");
         count = input.nextInt();
-        Student objArray[] = new Student[count];
+        ArrayList<Student> objArray = new ArrayList<Student>();
 
     //now, we need to assign a name and score to each possible index to the array of [count] size
     for(int i = 0; i<count ; i++){
-        objArray[i] = new Student();
+        objArray.add(new Student());
     }//end of for
 
 
-
-    //add average
-    for(int i = 0;i<count;i++)
-    {
-        total += objArray[i].getScore();
+    for (Student i : objArray) {
+        total += i.getScore();
     }
-
 
     //receipt output of scores
-		for(int i = 0;i<count;i++)
-    {
-        System.out.println("Student #" + (i + 1) + ") Name: " + objArray[i].getName());
-        System.out.println("Student #" + (i + 1) + ") Score: " + objArray[i].getScore());
-        System.out.println("Student #" + (i + 1) + ") Grade: " + objArray[i].getGrade());
-        System.out.println("---------");
-    }
+        for (Student i : objArray) {
+            System.out.println("Student #" + (objArray.indexOf(i)+1) + ") Name: " + i.getName());
+            System.out.println("Student #" + (objArray.indexOf(i)+1) + ") Score: " + i.getScore());
+            System.out.println("Student #" + (objArray.indexOf(i)+1) + ") Grade: " + i.getGrade());
+            System.out.println("---------");
+        }
+
 		System.out.println("Total:");
 		System.out.println(total);
 		System.out.println("Average: ");
 		System.out.println(total/count);
     }
 
+
+    public void checkInt(int num){
+        if (input.hasNextInt()){
+            num = input.nextInt();
+        }
+    }
+    public void checkString(){}
 }
