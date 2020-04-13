@@ -20,25 +20,30 @@ public class StudentDriver
         System.out.println();
     }
 
-
-
     static Scanner input = new Scanner(System.in); //setup scanner object to utilize the (input) variable
     public static void main(String[] args){
         Scanner input = new Scanner(System.in); //setup scanner object to utilize the (input) variable
-
-
-
+        boolean flag = false;
         double total = 0;
-        int count;
+        int count = 0;
         System.out.println("Please input # of scores: ");
-        count = input.nextInt();
+
+        while (!flag) {
+            input = new Scanner(System.in);
+            if (input.hasNextInt()) {
+                count = input.nextInt();
+                flag = true;
+            } else {
+                System.out.println("Invalid input. Please input a number. ");
+                flag = false;
+            }
+        }
         ArrayList<Student> objArray = new ArrayList<Student>();
 
     //now, we need to assign a name and score to each possible index to the array of [count] size
     for(int i = 0; i<count ; i++){
         objArray.add(new Student());
     }//end of for
-
 
     for (Student i : objArray) {
         total += i.getScore();
@@ -59,10 +64,17 @@ public class StudentDriver
     }
 
 
-    public void checkInt(int num){
+    public static boolean checkInt(int num){
         if (input.hasNextInt()){
-            num = input.nextInt();
+            return true;
         }
+        else { return false; }
     }
-    public void checkString(){}
+
+    public static boolean checkString(String str){
+        if (input.hasNext()){
+            return true;
+        }
+        else { return false; }
+    }
 }
